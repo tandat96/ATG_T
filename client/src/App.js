@@ -12,8 +12,8 @@ class App extends Component {
       <Provider store={store}>
         <div className="app">
             <Form/>
-            <table class="table table-sm table-responsive form-info">
-              <thead class="thead-default">
+            <table className="table table-sm table-responsive form-info">
+              <thead className="thead-default">
                 <tr>
                   <th>Name</th>
                   <th>Email</th>

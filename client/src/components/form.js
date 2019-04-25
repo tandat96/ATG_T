@@ -6,7 +6,7 @@ import FormSeleted from './formSeleted';
 
 class Form extends Component {
 
-
+    
     handleInputChange = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -31,35 +31,28 @@ class Form extends Component {
         address  : '',
         });
       };
-      // formEdit = ()=>{
-      //   if(this.props.profilesOld.isCompleted){
-      //         this.props.profilesOld.map(profile => <FormSeleted key={profile._id} profile={profile} />)
-      //     }
-      // }
-
+     
     render() { 
         return ( 
-            <form action method="post" className="form-info">
-            {/* {this.formEdit()} */}
-            {/* <div style={{display:this.state.profilesOld.isCompleted ? 'block' : 'none' }}> */}
-            <div className="row">
-              <div className="col-6">
-                <input className="form-control" type="text" name="firstName" placeholder="First Name" onChange={ this.handleInputChange } />
-                <input className="form-control" type="text" name="email" placeholder="Email" onChange={ this.handleInputChange }/>
-                <input className="form-control" type="text" name="telephone" placeholder="Telephone" onChange={ this.handleInputChange }/>
-              </div>
-              <div className="col-6">
-                <input className="form-control" type="text" name="lastName" placeholder="Last Name" onChange={ this.handleInputChange }/>
-                <input className="form-control" type="text" name="idNumber" placeholder="ID number" onChange={ this.handleInputChange }/>
-                <input className="form-control" type="text" name="address" placeholder="Address" onChange={ this.handleInputChange }/>
-              </div>
+            <form method="post" className="form-info" style={{height:'343px', overflow:'hidden'}}>
+            {
+              this.props.profiles.map(profile => <FormSeleted key={profile._id} profile={profile} />)
+          }
+            <div >
+            <div className="row" style={{marginTop :'40px'}}>
+                <input className="form-control col-4" type="text" name="firstName" placeholder="First Name" onChange={ this.handleInputChange } />
+                <input className="form-control col-4" type="text" name="lastName" placeholder="Last Name" onChange={ this.handleInputChange }/>
+                <input className="form-control col-4" type="text" name="email" placeholder="Email" onChange={ this.handleInputChange }/>
+                <input className="form-control col-4" type="text" name="idNumber" placeholder="ID number" onChange={ this.handleInputChange }/>
+                <input className="form-control col-4" type="text" name="telephone" placeholder="Telephone" onChange={ this.handleInputChange }/>
+                <input className="form-control col-4" type="text" name="address" placeholder="Address" onChange={ this.handleInputChange }/>
             </div>
             <div className="row btn-row">
               <button type="button" className="col-4 btn btn-info" onClick={(e)=>{e.preventDefault();this.handleSubmit()}}>SAVE</button>
               <button type="button" className="col-4 btn btn-warning">CHANGE</button>
               <button type="button" className="col-4 btn btn-danger">DELETE</button>
             </div>
-            {/* </div> */}
+            </div>
           </form>
           
           
@@ -69,6 +62,7 @@ class Form extends Component {
 
 const mapStateToProps = (state) => ({
   profiles: state.profiles,
+
 
 })
 export default connect(mapStateToProps,{ addProfile })(Form)

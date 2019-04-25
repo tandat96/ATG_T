@@ -31,25 +31,27 @@ const deleteItem = async (req, res, next) => {
         console.log(err)
     }
 }
-const updateItem = async (req, res, next) => {
-    // const { firstName,lastName, email,idNumber,telephone,address} = req.body
-    // try {
-    //     const Profile = await Profile.findById(req.params.profileId,
-            
-    //         )
-    //     await newProfile.save()
-    //     return res.json(newProfile)
-    // } catch (error) {
-    //     console.log(error)
-    // }
-    // try {
-    //     await Profile.findByIdAndUpdate(req.params.profileId)
-    //     return res.json({ profileId: req.params.profileId })
-    // } catch (err) {
-    //     console.log(err)
-    // }
-}
 
+
+const editById = async (req,res,next) => {
+
+    try {
+    const { firstName,lastName, email,idNumber,telephone,address} = req.body
+
+        const newProfile = req.body
+        const profile = await Profile.findById(req.params.profileId)
+        profile.firstName = newProfile.firstName
+        profile.lastName = newProfile.lastName
+        profile.email = newProfile.email
+        profile.idNumber = newProfile.idNumber
+        profile.telephone = newProfile.telephone
+        profile.address = newProfile.address
+        await profile.save()
+        return res.json({ profileId: req.params.profileId })
+    } catch (err) {
+        console.log(err)
+    }
+}
 const complete = async (req, res, next) => {
     try {
         const profile = await Profile.findById(req.params.profileId)
@@ -61,4 +63,4 @@ const complete = async (req, res, next) => {
     }
 }
 
-module.exports={create,getAll,deleteItem,updateItem,complete}
+module.exports={create,getAll,deleteItem,editById,complete}

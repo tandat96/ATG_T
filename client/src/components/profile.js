@@ -20,7 +20,7 @@ class Profile extends Component {
             <tr onClick={()=>this.handleSeleted()} className={profile.isCompleted ? 'bg-dark text-white' :  ''}>
             
                 <td>{full.name}</td>
-                <td>{profile.email}</td>
+                <td><i className="fas fa-user-circle"></i> {profile.email}</td>
                 <td>null....</td>
                 <td>{profile.createdAt}</td>
 

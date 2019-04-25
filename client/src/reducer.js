@@ -36,8 +36,8 @@ export default function (state = initialState, action) {
         case UPDATE:
             return {
                 ...state,
-                [action.payload._id]: action.payload,
-                profiles: state.profiles.map( profile => profile._id === action.payload._id?action.payload: profile ) 
+                [action.payload]: action,
+                profiles: state.profiles.map( profile => profile._id === action.payload?action: profile ) 
             }
         
         case COMPLETE:
