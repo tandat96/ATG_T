@@ -6,6 +6,7 @@ import store from './store'
 import ItemProfile from './components/itemProfile';
 
 class App extends Component {
+ 
   render() {
     return (
       <Provider store={store}>
@@ -29,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

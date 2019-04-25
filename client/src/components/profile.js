@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import {completeProfile} from '../actions'
 
 
 class Profile extends Component {
@@ -6,7 +8,6 @@ class Profile extends Component {
 
         super(props);
         this.state = { 
-            name:props.firstName +' '+props.lastName
          }
     }
     handleSeleted = () =>{
@@ -14,10 +15,11 @@ class Profile extends Component {
     }
     render() { 
         const { profile } = this.props
-
+         const full= {name: profile.firstName +' '+profile.lastName } 
         return ( 
-            <tr onClick={()=>this.handleSeleted()} className={profile.isCompleted ? 'checked' :  ''}>
-                <td>{this.state.name}</td>
+            <tr onClick={()=>this.handleSeleted()} className={profile.isCompleted ? 'bg-dark text-white' :  ''}>
+            
+                <td>{full.name}</td>
                 <td>{profile.email}</td>
                 <td>null....</td>
                 <td>{profile.createdAt}</td>
@@ -27,5 +29,7 @@ class Profile extends Component {
          );
     }
 }
- 
-export default Profile;
+const mapStateToProps = (state) => ({
+    profiles: state.profiles,
+})
+export default connect(mapStateToProps, {completeProfile})(Profile)

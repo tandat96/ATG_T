@@ -4,6 +4,7 @@ import {
     GETS,
     LOADS,
     DELETE,
+    UPDATE,
     COMPLETE
 } from './constants'
 
@@ -33,6 +34,14 @@ export const deleteProfile = (profileId) => dispatch => {
     axios.post(`/${profileId}`)
     .then(res => dispatch({
         type: DELETE,
+        payload: res.data.profileId
+    }))
+    .catch(error => console.log(error))
+}
+export const updateProfile = (profileId) => dispatch => {
+    axios.post(`/${profileId}`)
+    .then(res => dispatch({
+        type: UPDATE,
         payload: res.data.profileId
     }))
     .catch(error => console.log(error))

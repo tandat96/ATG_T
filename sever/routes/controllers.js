@@ -31,6 +31,24 @@ const deleteItem = async (req, res, next) => {
         console.log(err)
     }
 }
+const updateItem = async (req, res, next) => {
+    // const { firstName,lastName, email,idNumber,telephone,address} = req.body
+    // try {
+    //     const Profile = await Profile.findById(req.params.profileId,
+            
+    //         )
+    //     await newProfile.save()
+    //     return res.json(newProfile)
+    // } catch (error) {
+    //     console.log(error)
+    // }
+    // try {
+    //     await Profile.findByIdAndUpdate(req.params.profileId)
+    //     return res.json({ profileId: req.params.profileId })
+    // } catch (err) {
+    //     console.log(err)
+    // }
+}
 
 const complete = async (req, res, next) => {
     try {
@@ -43,4 +61,4 @@ const complete = async (req, res, next) => {
     }
 }
 
-module.exports={create,getAll,deleteItem,complete}
+module.exports={create,getAll,deleteItem,updateItem,complete}

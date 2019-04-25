@@ -2,6 +2,7 @@ import {
     ADD,
     GETS,
     DELETE,
+    UPDATE,
     LOADS,
     COMPLETE
 } from './constants'
@@ -9,7 +10,8 @@ import {
 
 const initialState = {
     loading: false,
-    profiles: []
+    profiles: [],
+    
 }
 
 export default function (state = initialState, action) {
@@ -31,16 +33,27 @@ export default function (state = initialState, action) {
                 ...state,
                 profiles: state.profiles.filter(profile => profile._id !== action.payload)
             }
+        case UPDATE:
+            return {
+                ...state,
+                [action.payload._id]: action.payload,
+                profiles: state.profiles.map( profile => profile._id === action.payload._id?action.payload: profile ) 
+            }
         
         case COMPLETE:
             return {
                 ...state,
-                profiles: state.profiles.map(profile => {
-                    if (profile._id === action.payload) return {
-                        ...profile,
-                        isCompleted: !profile.isCompleted
-                    }
-                    return profile
+                profiles: state.profiles.map(profile =>{
+                        if(profile._id !== action.payload){
+                            return {
+                                ...profile,
+                                isCompleted:false
+                            }
+                        }
+                        return {
+                            ...profile,
+                            isCompleted: !profile.isCompleted
+                        }
                 })
             }
         case LOADS:

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {addProfile} from '../actions'
+import FormSeleted from './formSeleted';
 
 
 class Form extends Component {
+
+
     handleInputChange = e => {
         this.setState({
           [e.target.name]: e.target.value
@@ -28,10 +31,17 @@ class Form extends Component {
         address  : '',
         });
       };
-      
+      // formEdit = ()=>{
+      //   if(this.props.profilesOld.isCompleted){
+      //         this.props.profilesOld.map(profile => <FormSeleted key={profile._id} profile={profile} />)
+      //     }
+      // }
+
     render() { 
         return ( 
             <form action method="post" className="form-info">
+            {/* {this.formEdit()} */}
+            {/* <div style={{display:this.state.profilesOld.isCompleted ? 'block' : 'none' }}> */}
             <div className="row">
               <div className="col-6">
                 <input className="form-control" type="text" name="firstName" placeholder="First Name" onChange={ this.handleInputChange } />
@@ -49,11 +59,16 @@ class Form extends Component {
               <button type="button" className="col-4 btn btn-warning">CHANGE</button>
               <button type="button" className="col-4 btn btn-danger">DELETE</button>
             </div>
+            {/* </div> */}
           </form>
           
           
          );
     }
 }
- 
-export default connect(null,{ addProfile })(Form)
+
+const mapStateToProps = (state) => ({
+  profiles: state.profiles,
+
+})
+export default connect(mapStateToProps,{ addProfile })(Form)

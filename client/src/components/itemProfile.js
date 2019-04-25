@@ -20,7 +20,7 @@ class ItemProfile extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-    profiles: state.profiles
+    profiles: state.profiles,
 })
  
 export default connect(mapStateToProps, { getProfiles })(ItemProfile)
