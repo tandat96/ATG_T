@@ -16,6 +16,9 @@ const create = async (req,res,next) => {
 const getAll = async (req, res, next) => {
     try {
         const profiles = await Profile.find()
+        
+        console.log(profiles)
+        
         return res.json(profiles)
     } catch (err) {
         console.log(err)
@@ -36,18 +39,15 @@ const deleteItem = async (req, res, next) => {
 const editById = async (req,res,next) => {
 
     try {
-    const { firstName,lastName, email,idNumber,telephone,address} = req.body
-
-        const newProfile = req.body
         const profile = await Profile.findById(req.params.profileId)
-        profile.firstName = newProfile.firstName
-        profile.lastName = newProfile.lastName
-        profile.email = newProfile.email
-        profile.idNumber = newProfile.idNumber
-        profile.telephone = newProfile.telephone
-        profile.address = newProfile.address
+        profile.firstName = req.body.firstName
+        profile.lastName = req.body.lastName
+        profile.email = req.body.email
+        profile.idNumber = req.body.idNumber
+        profile.telephone = req.body.telephone
+        profile.address = req.body.address
         await profile.save()
-        return res.json({ profileId: req.params.profileId })
+        return res.json(profile)
     } catch (err) {
         console.log(err)
     }

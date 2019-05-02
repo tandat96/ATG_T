@@ -41,9 +41,9 @@ export const deleteProfile = (profileId) => dispatch => {
 export const updateProfile = (profileId) => dispatch => {
     axios.post(`/${profileId}`)
     .then(res => dispatch({
-        type: UPDATE,
-        payload: res.data.profileId
-    }))
+        type: UPDATE, 
+        payload: res.data
+      }))
     .catch(error => console.log(error))
 }
 

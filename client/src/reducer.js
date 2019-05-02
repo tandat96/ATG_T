@@ -36,8 +36,13 @@ export default function (state = initialState, action) {
         case UPDATE:
             return {
                 ...state,
-                [action.payload]: action,
-                profiles: state.profiles.map( profile => profile._id === action.payload?action: profile ) 
+                profiles: state.profiles.map(profile => {
+                    if(profile._id !== action.payload._id)  {
+                       return profile
+                    }
+                    console.log(action.payload);
+                    return action.payload
+                   })
             }
         
         case COMPLETE:
