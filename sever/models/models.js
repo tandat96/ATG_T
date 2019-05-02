@@ -12,4 +12,4 @@ const profileSchema = new Schema({
     createdAt: { type: Date, default: Date.now }
 })
 
-module.exports = mongoose.model('profiles', profileSchema)
+module.exports = mongoose.model('Profile', profileSchema)
